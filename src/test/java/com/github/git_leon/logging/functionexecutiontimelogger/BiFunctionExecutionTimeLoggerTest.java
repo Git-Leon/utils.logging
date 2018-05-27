@@ -34,14 +34,15 @@ public class BiFunctionExecutionTimeLoggerTest {
     }
 
     @Test
-    public void testIfFunctionIsInvokedWithAndReturningValue1() {
+    public void testIfFunctionIsInvokedWithLogMessageAndReturningValue2() {
         // Given
+        String logMessage = "Some log message";
         String stringVal = "F";
         Integer radix = 16;
         Integer expected = 15;
 
         // When
-        Integer actual = logger.invokeAndLog(Integer::parseInt, stringVal, radix);
+        Integer actual = logger.invokeAndLog(Integer::parseInt, stringVal, radix, logMessage);
 
         // Then
         Assert.assertEquals(expected, actual);
@@ -49,7 +50,7 @@ public class BiFunctionExecutionTimeLoggerTest {
 
 
     @Test
-    public void testIfFunctionIsInvokedWithLogMessageAndReturningValue2() {
+    public void testIfFunctionIsInvokedWithLogMessageAndReturningValue3() {
         // Given
         String logMessage = "log message";
         String stringToConcatenateTo = "Blah";
@@ -67,8 +68,9 @@ public class BiFunctionExecutionTimeLoggerTest {
 
 
     @Test
-    public void testIfFunctionIsInvokedAndReturningValue1() {
+    public void testIfFunctionIsInvokedWithLogMessageAndReturningValue4() {
         // Given
+        String logMessage = "some message to log";
         String stringToConcatenateTo = "Blah";
         Integer integerToConcatenate = Integer.MAX_VALUE;
         String expected = stringToConcatenateTo + integerToConcatenate;
@@ -76,7 +78,7 @@ public class BiFunctionExecutionTimeLoggerTest {
         // When
         Object actual = logger.invokeAndLog(
                 (String someString, Integer someInt) -> someString + someInt,
-                stringToConcatenateTo, integerToConcatenate);
+                stringToConcatenateTo, integerToConcatenate, logMessage);
 
         // Then
         Assert.assertEquals(expected, actual);

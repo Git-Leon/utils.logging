@@ -19,13 +19,13 @@ public class FunctionExecutionTimeLogger {
     }
 
     /**
-     * @param function FunctionalInterface to be invoked
-     * @param firstArg first argument of FunctionalInterface to be invoked
-     * @param secondArg second argument of FunctionalInterface to be invoked
-     * @param logMessage message to be logged
-     * @param <FirstArgType> Parameter-Type of first argument
+     * @param function        FunctionalInterface to be invoked
+     * @param firstArg        first argument of FunctionalInterface to be invoked
+     * @param secondArg       second argument of FunctionalInterface to be invoked
+     * @param logMessage      message to be logged
+     * @param <FirstArgType>  Parameter-Type of first argument
      * @param <SecondArgType> Parameter-Type of second argument
-     * @param <ReturnType> Return-Type of FunctionalInterface to be invoked
+     * @param <ReturnType>    Return-Type of FunctionalInterface to be invoked
      * @return Return-Value of the invoked FunctionalInterface
      */
     public <FirstArgType, SecondArgType, ReturnType> ReturnType invokeAndLog(
@@ -45,26 +45,8 @@ public class FunctionExecutionTimeLogger {
         return returnValue;
     }
 
-
     /**
-     * Default log-message of `""`
-     * @param function FunctionalInterface to be invoked
-     * @param firstArg first argument of FunctionalInterface to be invoked
-     * @param secondArg second argument of FunctionalInterface to be invoked
-     * @param <FirstArgType> Parameter-Type of first argument
-     * @param <SecondArgType> Parameter-Type of second argument
-     * @param <ReturnType> Return-Type of FunctionalInterface to be invoked
-     * @return Return-Value of the invoked FunctionalInterface
-     */
-    public <FirstArgType, SecondArgType, ReturnType> ReturnType invokeAndLog(
-            BiFunction<FirstArgType, SecondArgType, ReturnType> function,
-            FirstArgType firstArg, SecondArgType secondArg) {
-        return invokeAndLog(function, firstArg, secondArg, "");
-    }
-
-
-    /**
-     * @param function FunctionalInterface to be invoked
+     * @param function     FunctionalInterface to be invoked
      * @param <ReturnType> Return-Type of FunctionalInterface to be invoked
      * @return Return-Value of the invoked FunctionalInterface
      */
@@ -72,20 +54,6 @@ public class FunctionExecutionTimeLogger {
             Function<ArgType, ReturnType> function, ArgType arg, String logMessage) {
         return invokeAndLog((arg1, arg2) -> function.apply(arg), null, null, logMessage);
     }
-
-
-    /**
-     * Default log-message of `""`
-     * @param function FunctionalInterface to be invoked
-     * @param <ReturnType> Return-Type of FunctionalInterface to be invoked
-     * @return Return-Value of the invoked FunctionalInterface
-     */
-    public <ArgType, ReturnType> ReturnType invokeAndLog(
-            Function<ArgType, ReturnType> function, ArgType arg) {
-        return invokeAndLog(function, arg, "");
-    }
-
-
 
     /**
      * @param function FunctionalInterface to be invoked
@@ -99,20 +67,8 @@ public class FunctionExecutionTimeLogger {
         }, null, logMessage);
     }
 
-
     /**
-     * Default log-message of `""`
-     * @param function FunctionalInterface to be invoked
-     * @return Return-Value of the invoked FunctionalInterface
-     */
-    public <ArgType> void consumeAndLog(
-            Consumer<ArgType> function, ArgType argument) {
-        consumeAndLog(function, argument, "");
-    }
-
-
-    /**
-     * @param function FunctionalInterface to be invoked
+     * @param function     FunctionalInterface to be invoked
      * @param <ReturnType> Return-Type of FunctionalInterface to be invoked
      * @return Return-Value of the invoked FunctionalInterface
      */
@@ -123,17 +79,6 @@ public class FunctionExecutionTimeLogger {
         }, null, logMessage);
     }
 
-
-    /**
-     * Default log-message of `""`
-     * @param function FunctionalInterface to be invoked
-     * @param <ReturnType> Return-Type of FunctionalInterface to be invoked
-     * @return Return-Value of the invoked FunctionalInterface
-     */
-    public <ReturnType> ReturnType invokeAndLog(
-            Supplier<ReturnType> function) {
-        return invokeAndLog(function, "");
-    }
 
     public Logger getLogger() {
         return logger.getLogger();

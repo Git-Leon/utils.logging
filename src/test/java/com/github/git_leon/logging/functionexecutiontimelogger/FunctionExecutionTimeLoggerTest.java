@@ -39,11 +39,12 @@ public class FunctionExecutionTimeLoggerTest {
     public void testIfFunctionIsInvokedAndReturningValue1() {
         // Given
         String expected = "Blah";
+        String logMessage = "Some log message";
 
         // When
         Object actual = logger.invokeAndLog(
                 (String someString) -> someString,
-                expected);
+                expected, logMessage);
 
         // Then
         Assert.assertEquals(expected, actual);

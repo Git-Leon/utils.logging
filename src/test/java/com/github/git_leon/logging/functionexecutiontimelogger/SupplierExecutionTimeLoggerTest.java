@@ -37,9 +37,10 @@ public class SupplierExecutionTimeLoggerTest {
     public void testIfFunctionIsInvokedAndReturningValue2() {
         // Given
         String expected = "Blah";
+        String logMessage = "log message";
 
         // When
-        Object actual = logger.invokeAndLog(() -> expected);
+        Object actual = logger.invokeAndLog(() -> expected, logMessage);
 
         // Then
         Assert.assertEquals(expected, actual);

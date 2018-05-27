@@ -24,12 +24,15 @@ public class ConsumerExecutionTimeLoggerTest {
     @Test
     public void testIfFunctionIsWaiting() {
         // Given
+        String argumentToConsume = "argument to consume";
         String logMessage = "log message";
         int expectedApproximateTime = 150;
 
         // When
         long executionStartTime = System.currentTimeMillis();
-        logger.consumeAndLog((someString) -> SleepUtils.wait(expectedApproximateTime, TimeUnit.MILLISECONDS), logMessage);
+        logger.consumeAndLog(
+                (someString) -> SleepUtils.wait(expectedApproximateTime, TimeUnit.MILLISECONDS),
+                argumentToConsume, logMessage);
         long timeElapsed = System.currentTimeMillis() - executionStartTime;
 
         // Then
