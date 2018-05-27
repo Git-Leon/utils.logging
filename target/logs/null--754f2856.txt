@@ -1,0 +1,6 @@
+May 26, 2018 11:03:48 PM com.github.git_leon.logging.SimpleLogger log
+INFO: 
+May 26, 2018 11:03:48 PM com.github.git_leon.logging.SimpleLogger log
+INFO: Resulted in Blah2147483647
+May 26, 2018 11:03:48 PM com.github.git_leon.logging.SimpleLogger log
+INFO: Execution time: 0.0 seconds.
