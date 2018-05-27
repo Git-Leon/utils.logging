@@ -23,14 +23,12 @@ public class FunctionExecutionTimeLoggerTest {
     public void testIfFunctionIsInvokedWithLogMessageAndReturningValue2() {
         // Given
         String logMessage = "log message";
-        String stringToConcatenateTo = "Blah";
-        Integer integerToConcatenate = Integer.MAX_VALUE;
-        String expected = stringToConcatenateTo + integerToConcatenate;
+        String expected = "Blah";
 
         // When
         Object actual = logger.invokeAndLog(
                 (someString) -> someString,
-                stringToConcatenateTo, logMessage);
+                expected, logMessage);
 
         // Then
         Assert.assertEquals(expected, actual);
@@ -40,14 +38,12 @@ public class FunctionExecutionTimeLoggerTest {
     @Test
     public void testIfFunctionIsInvokedAndReturningValue1() {
         // Given
-        String stringToConcatenateTo = "Blah";
-        Integer integerToConcatenate = Integer.MAX_VALUE;
-        String expected = stringToConcatenateTo + integerToConcatenate;
+        String expected = "Blah";
 
         // When
         Object actual = logger.invokeAndLog(
                 (String someString) -> someString,
-                stringToConcatenateTo);
+                expected);
 
         // Then
         Assert.assertEquals(expected, actual);
