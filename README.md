@@ -28,7 +28,7 @@ The purpose of this repository is to
 ```xml
 <dependency>
   <groupId>com.github.git-leon</groupId>
-  <artifactId>temporalutils</artifactId>
+  <artifactId>loggingutils</artifactId>
   <version>1.0</version>
 </dependency>
 ```
