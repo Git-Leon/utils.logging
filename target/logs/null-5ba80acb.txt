@@ -1,6 +1,0 @@
-May 26, 2018 11:21:41 PM com.github.git_leon.logging.SimpleLogger log
-INFO: 
-May 26, 2018 11:21:41 PM com.github.git_leon.logging.SimpleLogger log
-INFO: Resulted in null
-May 26, 2018 11:21:41 PM com.github.git_leon.logging.SimpleLogger log
-INFO: Execution time: 0.152 seconds.
