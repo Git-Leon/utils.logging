@@ -26,11 +26,15 @@ public final class SimpleLogger {
     }
 
     public SimpleLogger(Logger logger) {
+        this(logger, getFileHandler(logger.getName()));
+    }
+
+    public SimpleLogger(Logger logger, StreamHandler streamHandler) {
         this.logger = logger;
         this.loggerName = logger.getName();
         logger.setUseParentHandlers(false);
         this.removeHandlers();
-        this.logger.addHandler(getFileHandler());
+        this.logger.addHandler(streamHandler);
         this.printingEnabled = true;
     }
 
@@ -55,23 +59,17 @@ public final class SimpleLogger {
         info(prefixedMessage, prefix, args);
     }
 
-    private FileHandler getFileHandler() {
-        return getFileHandler(new SimpleFormatter());
-    }
-
-    private FileHandler getFileHandler(Formatter formatter) {
+    private static FileHandler getFileHandler(String fileName) {
         String fileDirectory = "./target/logs/";
-        String fileName = fileDirectory + loggerName;
+        String fullFilePath = fileDirectory + fileName;
 
         FileHandler fh = null;
         try {
             new File(fileDirectory).mkdirs();
-            fh = new FileHandler(fileName);
-            fh.setFormatter(formatter);
+            fh = new FileHandler(fullFilePath, true);
+            fh.setFormatter(new SimpleFormatter());
         } catch (IOException ioe) {
             ioe.printStackTrace();
-        } catch (NullPointerException npe) {
-
         }
         return fh;
     }
