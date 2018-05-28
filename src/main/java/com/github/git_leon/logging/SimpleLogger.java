@@ -63,7 +63,7 @@ public final class SimpleLogger {
         Long currentTime = System.nanoTime();
         String timeStamp = Integer.toString(currentTime.intValue(), 16);
         String fileDirectory = "./target/logs/";
-        String fileName = String.format(fileDirectory + "%s-%s.txt", loggerName, timeStamp);
+        String fileName = fileDirectory + loggerName;
 
         FileHandler fh = null;
         try {
