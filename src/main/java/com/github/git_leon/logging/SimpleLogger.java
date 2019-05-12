@@ -39,10 +39,9 @@ public final class SimpleLogger {
     }
 
     private void removeHandlers() {
-        Logger globalLogger = Logger.getGlobal();
-        Handler[] handlers = globalLogger.getHandlers();
+        Handler[] handlers = logger.getHandlers();
         for (Handler handler : handlers) {
-            globalLogger.removeHandler(handler);
+            logger.removeHandler(handler);
         }
     }
 
