@@ -12,10 +12,10 @@ import java.util.logging.Logger;
  * The purpose of this class is to invoke methods and report their result and execution time
  */
 public class FunctionExecutionTimeLogger {
-    private final SimpleLogger logger;
+    private final SimpleLoggerInterface logger;
 
-    public FunctionExecutionTimeLogger(Logger logger) {
-        this.logger = new SimpleLogger(logger);
+    public FunctionExecutionTimeLogger(SimpleLoggerInterface logger) {
+        this.logger = logger;
     }
 
     /**
