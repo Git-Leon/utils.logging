@@ -1,6 +1,7 @@
 package com.github.git_leon.logging.functionexecutiontimelogger;
 
 import com.github.git_leon.logging.FunctionExecutionTimeLogger;
+import com.github.git_leon.logging.SimpleLogger;
 import com.github.git_leon.logging.SleepUtils;
 import org.junit.Assert;
 import org.junit.Before;
@@ -17,7 +18,7 @@ public class ConsumerExecutionTimeLoggerTest {
 
     @Before
     public void setup() {
-        this.logger = new FunctionExecutionTimeLogger(Logger.getAnonymousLogger());
+        this.logger = new FunctionExecutionTimeLogger(new SimpleLogger(Logger.getAnonymousLogger()));
     }
 
 
