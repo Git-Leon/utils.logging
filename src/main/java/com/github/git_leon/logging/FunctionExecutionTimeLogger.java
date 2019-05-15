@@ -5,7 +5,6 @@ import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
-import java.util.logging.Logger;
 
 /**
  * @author leon on 5/25/18.
@@ -77,10 +76,5 @@ public class FunctionExecutionTimeLogger {
         return invokeAndLog((arg) -> {
             return function.get();
         }, null, logMessage);
-    }
-
-
-    public Logger getLogger() {
-        return logger.getLogger();
     }
 }

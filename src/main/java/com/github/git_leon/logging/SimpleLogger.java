@@ -12,10 +12,6 @@ public final class SimpleLogger implements SimpleLoggerInterface {
     private final Logger logger;
     private boolean isEnabled;
 
-    public SimpleLogger(Class c) {
-        this(c.getSimpleName());
-    }
-
     public SimpleLogger(String loggerName) {
         this(Logger.getLogger(loggerName));
     }
@@ -31,10 +27,13 @@ public final class SimpleLogger implements SimpleLoggerInterface {
         this.logger.addHandler(streamHandler);
     }
 
-    public void evaluateCondition(boolean condition, String eventDescription, Object... args) {
-        String prefixedMessage = "%s " + eventDescription;
-        String prefix = condition ? "Successfully" : "Unsuccesfully";
-        info(prefixedMessage, prefix, args);
+    @Override
+    public void log(Level level, String message, Object... messageArgs) {
+        String info = String.format(message, messageArgs);
+        if (isEnabled()) {
+            System.out.println(info);
+            logger.log(level, info);
+        }
     }
 
     @Override
@@ -50,11 +49,6 @@ public final class SimpleLogger implements SimpleLoggerInterface {
     @Override
     public boolean isEnabled() {
         return isEnabled;
-    }
-
-    @Override
-    public Logger getLogger() {
-        return logger;
     }
 
     private void removeHandlers() {

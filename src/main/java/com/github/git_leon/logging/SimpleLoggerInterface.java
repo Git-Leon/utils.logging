@@ -3,11 +3,8 @@ package com.github.git_leon.logging;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
-import static java.util.logging.Level.INFO;
-import static java.util.logging.Level.SEVERE;
-import static java.util.logging.Level.WARNING;
+import static java.util.logging.Level.*;
 
 public interface SimpleLoggerInterface {
 
@@ -34,13 +31,7 @@ public interface SimpleLoggerInterface {
         error(description);
     }
 
-    default void log(Level level, String message, Object... messageArgs) {
-        String info = String.format(message, messageArgs);
-        if (isEnabled()) {
-            System.out.println(info);
-            getLogger().log(level, info);
-        }
-    }
+    void log(Level level, String message, Object... messageArgs);
 
     void enabled();
 
@@ -48,5 +39,4 @@ public interface SimpleLoggerInterface {
 
     boolean isEnabled();
 
-    Logger getLogger();
 }
