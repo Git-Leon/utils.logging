@@ -1,6 +1,8 @@
 package com.github.git_leon.logging;
 
 
+import sun.reflect.generics.tree.ReturnType;
+
 import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -76,6 +78,20 @@ public class FunctionExecutionTimeLogger implements SimpleLoggerInterface {
             Supplier<ReturnType> function, String logMessage) {
         return invokeAndLog((arg) -> {
             return function.get();
+        }, null, logMessage);
+    }
+
+
+    /**
+     * @param function     FunctionalInterface to be invoked
+     * @param <ReturnType> Return-Type of FunctionalInterface to be invoked
+     * @return Return-Value of the invoked FunctionalInterface
+     */
+    public void invokeAndLog(
+            Runnable function, String logMessage) {
+        invokeAndLog((arg) -> {
+            function.run();
+            return null;
         }, null, logMessage);
     }
 
