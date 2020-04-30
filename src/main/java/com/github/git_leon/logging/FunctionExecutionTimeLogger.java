@@ -3,10 +3,7 @@ package com.github.git_leon.logging;
 
 import sun.reflect.generics.tree.ReturnType;
 
-import java.util.function.BiFunction;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Supplier;
+import java.util.function.*;
 import java.util.logging.Level;
 
 /**
@@ -65,6 +62,18 @@ public class FunctionExecutionTimeLogger implements SimpleLoggerInterface {
             Consumer<ArgType> function, ArgType argument, String logMessage) {
         invokeAndLog((arg1) -> {
             function.accept(argument);
+            return null;
+        }, null, logMessage);
+    }
+
+    /**
+     * @param function FunctionalInterface to be invoked
+     * @return Return-Value of the invoked FunctionalInterface
+     */
+    public <ArgType1, ArgType2> void consumeAndLog(
+            BiConsumer<ArgType1, ArgType2> function, ArgType1 argument1, ArgType2 argument2, String logMessage) {
+        invokeAndLog((arg1) -> {
+            function.accept(argument1, argument2);
             return null;
         }, null, logMessage);
     }
