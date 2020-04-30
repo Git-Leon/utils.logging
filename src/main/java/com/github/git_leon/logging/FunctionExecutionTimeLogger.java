@@ -5,12 +5,13 @@ import java.util.function.BiFunction;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.logging.Level;
 
 /**
  * @author leon on 5/25/18.
  * The purpose of this class is to invoke methods and report their result and execution time
  */
-public class FunctionExecutionTimeLogger {
+public class FunctionExecutionTimeLogger implements SimpleLoggerInterface {
     private final SimpleLoggerInterface logger;
 
     public FunctionExecutionTimeLogger(SimpleLoggerInterface logger) {
@@ -76,5 +77,25 @@ public class FunctionExecutionTimeLogger {
         return invokeAndLog((arg) -> {
             return function.get();
         }, null, logMessage);
+    }
+
+    @Override
+    public void log(Level level, String message, Object... messageArgs) {
+        logger.log(level, message, messageArgs);
+    }
+
+    @Override
+    public void enable() {
+        logger.enable();
+    }
+
+    @Override
+    public void disble() {
+        logger.disble();
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return logger.isEnabled();
     }
 }

@@ -33,7 +33,7 @@ public interface SimpleLoggerInterface {
 
     void log(Level level, String message, Object... messageArgs);
 
-    void enabled();
+    void enable();
 
     void disble();
 
