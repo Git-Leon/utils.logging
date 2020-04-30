@@ -84,7 +84,6 @@ public class FunctionExecutionTimeLogger implements SimpleLoggerInterface {
 
     /**
      * @param function     FunctionalInterface to be invoked
-     * @param <ReturnType> Return-Type of FunctionalInterface to be invoked
      * @return Return-Value of the invoked FunctionalInterface
      */
     public void invokeAndLog(
