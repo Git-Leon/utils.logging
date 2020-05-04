@@ -27,7 +27,7 @@ public class FunctionExecutionTimeLoggerTest {
         String expected = "Blah";
 
         // When
-        Object actual = logger.invokeAndLog(
+        Object actual = logger.logAndInvoke(
                 (someString) -> someString,
                 expected, logMessage);
 
@@ -43,7 +43,7 @@ public class FunctionExecutionTimeLoggerTest {
         String logMessage = "Some log message";
 
         // When
-        Object actual = logger.invokeAndLog(
+        Object actual = logger.logAndInvoke(
                 (String someString) -> someString,
                 expected, logMessage);
 

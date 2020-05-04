@@ -28,7 +28,7 @@ public class BiFunctionExecutionTimeLoggerTest {
         Integer expected = 15;
 
         // When
-        Integer actual = logger.invokeAndLog(Integer::parseInt, stringVal, radix, logMessage);
+        Integer actual = logger.logAndInvoke(Integer::parseInt, stringVal, radix, logMessage);
 
         // Then
         Assert.assertEquals(expected, actual);
@@ -43,7 +43,7 @@ public class BiFunctionExecutionTimeLoggerTest {
         Integer expected = 15;
 
         // When
-        Integer actual = logger.invokeAndLog(Integer::parseInt, stringVal, radix, logMessage);
+        Integer actual = logger.logAndInvoke(Integer::parseInt, stringVal, radix, logMessage);
 
         // Then
         Assert.assertEquals(expected, actual);
@@ -59,7 +59,7 @@ public class BiFunctionExecutionTimeLoggerTest {
         String expected = stringToConcatenateTo + integerToConcatenate;
 
         // When
-        Object actual = logger.invokeAndLog(
+        Object actual = logger.logAndInvoke(
                 (String someString, Integer someInt) -> someString + someInt,
                 stringToConcatenateTo, integerToConcatenate, logMessage);
 
@@ -77,7 +77,7 @@ public class BiFunctionExecutionTimeLoggerTest {
         String expected = stringToConcatenateTo + integerToConcatenate;
 
         // When
-        Object actual = logger.invokeAndLog(
+        Object actual = logger.logAndInvoke(
                 (String someString, Integer someInt) -> someString + someInt,
                 stringToConcatenateTo, integerToConcatenate, logMessage);
 

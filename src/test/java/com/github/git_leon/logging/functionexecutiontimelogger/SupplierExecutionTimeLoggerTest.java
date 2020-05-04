@@ -26,7 +26,7 @@ public class SupplierExecutionTimeLoggerTest {
         String expected = "Blah";
 
         // When
-        Object actual = logger.invokeAndLog(() -> expected, logMessage);
+        Object actual = logger.logAndInvoke(() -> expected, logMessage);
 
         // Then
         Assert.assertEquals(expected, actual);
@@ -40,7 +40,7 @@ public class SupplierExecutionTimeLoggerTest {
         String logMessage = "log message";
 
         // When
-        Object actual = logger.invokeAndLog(() -> expected, logMessage);
+        Object actual = logger.logAndInvoke(() -> expected, logMessage);
 
         // Then
         Assert.assertEquals(expected, actual);

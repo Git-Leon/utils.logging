@@ -5,7 +5,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * @author leon on 5/26/18.
  */
-public class SleepUtils {
+public final class SleepUtils {
     public static void wait(int timeout, TimeUnit timeUnit) {
         try {
             Thread.sleep(timeUnit.convert(timeout, TimeUnit.MILLISECONDS));
