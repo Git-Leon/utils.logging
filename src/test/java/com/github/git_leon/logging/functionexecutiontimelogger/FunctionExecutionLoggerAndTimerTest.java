@@ -1,6 +1,6 @@
 package com.github.git_leon.logging.functionexecutiontimelogger;
 
-import com.github.git_leon.logging.FunctionExecutionTimeLogger;
+import com.github.git_leon.logging.FunctionExecutionLoggerAndTimer;
 import com.github.git_leon.logging.SimpleLogger;
 import org.junit.Assert;
 import org.junit.Before;
@@ -11,12 +11,12 @@ import java.util.logging.Logger;
 /**
  * @author leon on 5/26/18.
  */
-public class FunctionExecutionTimeLoggerTest {
-    private FunctionExecutionTimeLogger logger;
+public class FunctionExecutionLoggerAndTimerTest {
+    private FunctionExecutionLoggerAndTimer logger;
 
     @Before
     public void setup() {
-        this.logger = new FunctionExecutionTimeLogger(new SimpleLogger(Logger.getAnonymousLogger()));
+        this.logger = new FunctionExecutionLoggerAndTimer(new SimpleLogger(Logger.getAnonymousLogger()));
     }
 
 

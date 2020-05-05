@@ -7,10 +7,10 @@ import java.util.function.BiFunction;
  * @author leon on 5/25/18.
  * The purpose of this class is to invoke methods and report their result and execution time
  */
-public final class FunctionExecutionTimeLogger implements FunctionExecutionLogger {
+public final class FunctionExecutionLoggerAndTimer implements FunctionExecutionLoggerInterface {
     private final SimpleLoggerInterface logger;
 
-    public FunctionExecutionTimeLogger(SimpleLoggerInterface logger) {
+    public FunctionExecutionLoggerAndTimer(SimpleLoggerInterface logger) {
         this.logger = logger;
     }
 

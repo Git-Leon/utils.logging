@@ -7,7 +7,7 @@ import java.util.logging.Level;
  * @author leonhunter
  * @created 05/04/2020 - 7:51 PM
  */
-public interface FunctionExecutionLogger extends SimpleLoggerInterface {
+public interface FunctionExecutionLoggerInterface extends SimpleLoggerInterface {
 
     SimpleLoggerInterface getLogger();
 
