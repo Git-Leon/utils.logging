@@ -7,6 +7,15 @@
     <groupId>com.github.git_leon</groupId>
     <artifactId>simplelogger</artifactId>
     <version>2.1.1</version>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Git-Leon Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/Git-Leon/utils.logging</url>
+        </repository>
+    </distributionManagement>
+
     <build>
         <plugins>
             <!-- java 8 -->
