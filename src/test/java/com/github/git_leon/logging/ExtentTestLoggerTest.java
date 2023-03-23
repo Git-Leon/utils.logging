@@ -1,24 +1,37 @@
-package com.github.git_leon.logging.functionexecutiontimelogger;
+package com.github.git_leon.logging;
+
 
 import com.github.git_leon.logging.extenttest.ExtentTestLogger;
+import com.github.git_leon.logging.extenttest.ExtentTestLoggerFactory;
 import com.github.git_leon.logging.functionexecutiontimer.FunctionExecutionLoggerAndTimer;
-import com.github.git_leon.logging.simplelogger.SimpleLogger;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.junit.*;
 
 /**
  * @author leon on 5/26/18.
  */
-public class BiFunctionExecutionLoggerAndTimerTest {
-    private FunctionExecutionLoggerAndTimer logger;
+public class ExtentTestLoggerTest {
+    private ExtentTestLogger logger;
+    private static ExtentTestLoggerFactory extentTestLoggerFactory;
+
+
+    @BeforeClass
+    public static void staticSetup() {
+        final Class<?> clazz = ExtentTestLoggerTest.class;
+        final String reportPath = DirectoryReference.REPORT_DIRECTORY.getDirectoryPath();
+        final String reportName = "test.html";
+        final String reportFullPath = reportPath + "/" + reportName;
+        ExtentTestLoggerTest.extentTestLoggerFactory = new ExtentTestLoggerFactory(reportFullPath);
+    }
+
+    @After
+    public void teardown() {
+        logger.flush();
+    }
 
     @Before
-    public void setup() {
-        this.logger = new FunctionExecutionLoggerAndTimer(new SimpleLogger(Logger.getAnonymousLogger()));
+    public void instanceSetup() {
+        final ExtentTestLogger extentTestLogger = extentTestLoggerFactory.createExtentTestLogger("test flushing to multiple tests");
+        this.logger = extentTestLogger;
     }
 
     @Test
@@ -30,7 +43,7 @@ public class BiFunctionExecutionLoggerAndTimerTest {
         Integer expected = 15;
 
         // When
-        Integer actual = logger.logAndInvoke(Integer::parseInt, stringVal, radix, logMessage);
+        Integer actual = new FunctionExecutionLoggerAndTimer(logger).logAndInvoke(Integer::parseInt, stringVal, radix, logMessage);
 
         // Then
         Assert.assertEquals(expected, actual);
@@ -45,7 +58,7 @@ public class BiFunctionExecutionLoggerAndTimerTest {
         Integer expected = 15;
 
         // When
-        Integer actual = logger.logAndInvoke(Integer::parseInt, stringVal, radix, logMessage);
+        Integer actual = new FunctionExecutionLoggerAndTimer(logger).logAndInvoke(Integer::parseInt, stringVal, radix, logMessage);
 
         // Then
         Assert.assertEquals(expected, actual);
@@ -61,7 +74,7 @@ public class BiFunctionExecutionLoggerAndTimerTest {
         String expected = stringToConcatenateTo + integerToConcatenate;
 
         // When
-        Object actual = logger.logAndInvoke(
+        Object actual = new FunctionExecutionLoggerAndTimer(logger).logAndInvoke(
                 (String someString, Integer someInt) -> someString + someInt,
                 stringToConcatenateTo, integerToConcatenate, logMessage);
 
@@ -79,7 +92,7 @@ public class BiFunctionExecutionLoggerAndTimerTest {
         String expected = stringToConcatenateTo + integerToConcatenate;
 
         // When
-        Object actual = logger.logAndInvoke(
+        Object actual = new FunctionExecutionLoggerAndTimer(logger).logAndInvoke(
                 (String someString, Integer someInt) -> someString + someInt,
                 stringToConcatenateTo, integerToConcatenate, logMessage);
 

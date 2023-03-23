@@ -9,7 +9,7 @@ public class ExtentTestLogger implements ExtentTestLoggerInterface {
     private final ExtentTest extentTest;
     private final ExtentHtmlReporter extentReporter;
     private final ExtentReports extentReports;
-    private boolean isEnabled;
+    private boolean isEnabled = true;
 
     public ExtentTestLogger(Class<?> clazz, String testDescription) {
         this(DirectoryReference
@@ -39,7 +39,6 @@ public class ExtentTestLogger implements ExtentTestLoggerInterface {
         this.extentReporter = reporter;
         this.extentReports = extentReports;
         this.extentTest = extentReports.createTest(testName, testDescription);
-        this.isEnabled = true;
     }
 
     @Override
