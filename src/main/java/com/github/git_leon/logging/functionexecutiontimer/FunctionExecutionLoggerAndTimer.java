@@ -1,5 +1,7 @@
-package com.github.git_leon.logging;
+package com.github.git_leon.logging.functionexecutiontimer;
 
+
+import com.github.git_leon.logging.simplelogger.SimpleLoggerInterface;
 
 import java.util.function.BiFunction;
 

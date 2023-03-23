@@ -1,4 +1,6 @@
-package com.github.git_leon.logging;
+package com.github.git_leon.logging.functionexecutiontimer;
+
+import com.github.git_leon.logging.simplelogger.SimpleLoggerInterface;
 
 import java.util.function.*;
 import java.util.logging.Level;
@@ -98,8 +100,8 @@ public interface FunctionExecutionLoggerInterface extends SimpleLoggerInterface 
     }
 
     @Override
-    default void disble() {
-        getLogger().disble();
+    default void disable() {
+        getLogger().disable();
     }
 
     @Override

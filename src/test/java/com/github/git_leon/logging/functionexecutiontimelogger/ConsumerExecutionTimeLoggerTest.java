@@ -1,7 +1,7 @@
 package com.github.git_leon.logging.functionexecutiontimelogger;
 
-import com.github.git_leon.logging.FunctionExecutionLoggerAndTimer;
-import com.github.git_leon.logging.SimpleLogger;
+import com.github.git_leon.logging.functionexecutiontimer.FunctionExecutionLoggerAndTimer;
+import com.github.git_leon.logging.simplelogger.SimpleLogger;
 import com.github.git_leon.logging.SleepUtils;
 import org.junit.Assert;
 import org.junit.Before;

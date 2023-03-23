@@ -1,4 +1,4 @@
-package com.github.git_leon.logging;
+package com.github.git_leon.logging.simplelogger;
 
 
 import java.io.File;
@@ -42,7 +42,7 @@ public final class SimpleLogger implements SimpleLoggerInterface {
     }
 
     @Override
-    public void disble() {
+    public void disable() {
         this.isEnabled = false;
     }
 
@@ -61,7 +61,7 @@ public final class SimpleLogger implements SimpleLoggerInterface {
     private static FileHandler getFileHandler(String fileName) {
         String fileDirectory = "./target/logs/";
         String fullFilePath = fileDirectory + fileName;
-        String invalidFileCharacters = ":;'`<>~!@#$%^&*()\\[\\]";
+        String invalidFileCharacters = ":;'`<>~!@#$%^&";
         for (String invalidFileCharacterString : invalidFileCharacters.split("")) {
             fullFilePath = fullFilePath.replaceAll(invalidFileCharacterString, "");
         }

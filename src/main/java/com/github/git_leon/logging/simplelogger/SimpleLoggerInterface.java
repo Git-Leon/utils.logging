@@ -1,4 +1,4 @@
-package com.github.git_leon.logging;
+package com.github.git_leon.logging.simplelogger;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -35,7 +35,7 @@ public interface SimpleLoggerInterface {
 
     void enable();
 
-    void disble();
+    void disable();
 
     boolean isEnabled();
 
