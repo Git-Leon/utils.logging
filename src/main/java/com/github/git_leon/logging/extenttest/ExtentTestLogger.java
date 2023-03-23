@@ -15,6 +15,7 @@ public class ExtentTestLogger implements ExtentTestLoggerInterface {
         this(DirectoryReference
                         .REPORT_DIRECTORY
                         .getFileFromDirectory(clazz.getSimpleName())
+                        .getParentFile()
                         .getAbsolutePath(),
                 clazz.getName(),
                 testDescription);
