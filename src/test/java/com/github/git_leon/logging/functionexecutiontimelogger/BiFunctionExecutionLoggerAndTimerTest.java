@@ -1,11 +1,13 @@
 package com.github.git_leon.logging.functionexecutiontimelogger;
 
+import com.github.git_leon.logging.extenttest.ExtentTestLogger;
 import com.github.git_leon.logging.functionexecutiontimer.FunctionExecutionLoggerAndTimer;
 import com.github.git_leon.logging.simplelogger.SimpleLogger;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -28,10 +30,13 @@ public class BiFunctionExecutionLoggerAndTimerTest {
         Integer expected = 15;
 
         // When
+        ExtentTestLogger extentTestLogger = new ExtentTestLogger(this.getClass(), "");
+        extentTestLogger.log(Level.INFO, "hello world");
         Integer actual = logger.logAndInvoke(Integer::parseInt, stringVal, radix, logMessage);
 
         // Then
         Assert.assertEquals(expected, actual);
+        extentTestLogger.flush();
     }
 
     @Test

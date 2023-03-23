@@ -1,5 +1,6 @@
 package com.github.git_leon.logging.extenttest;
 
+import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
@@ -10,6 +11,15 @@ import java.io.StringWriter;
 import java.util.logging.Level;
 
 public interface ExtentTestLoggerInterface extends SimpleLoggerInterface {
+
+    ExtentHtmlReporter getExtentReporter();
+
+    ExtentReports getExtentReports();
+
+    default void flush() {
+        getExtentReports().flush();
+        getExtentReporter().flush();
+    }
 
     @Override
     default void log(Level level, String logMessage, Object... logMessageArgs) {
