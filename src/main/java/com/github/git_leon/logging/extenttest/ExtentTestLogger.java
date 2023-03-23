@@ -14,14 +14,10 @@ public class ExtentTestLogger implements ExtentTestLoggerInterface {
     public ExtentTestLogger(Class<?> clazz, String testDescription) {
         this(DirectoryReference
                         .REPORT_DIRECTORY
-                        .getDirectoryFile()
+                        .getFileFromDirectory("/test.html")
                         .getAbsolutePath(),
                 clazz.getName(),
                 testDescription);
-    }
-
-    public ExtentTestLogger(Class<?> clazz) {
-        this(clazz, clazz.getName() + "@" + System.currentTimeMillis());
     }
 
     public ExtentTestLogger(String path, String name, String testDescription) {
@@ -32,6 +28,11 @@ public class ExtentTestLogger implements ExtentTestLoggerInterface {
         this(reporter, new ExtentReports(), testName, testDescription);
     }
 
+    public ExtentTestLogger(ExtentHtmlReporter reporter, ExtentReports extentReports, ExtentTest extentTest) {
+        this.extentReporter = reporter;
+        this.extentReports = extentReports;
+        this.extentTest = extentTest;
+    }
 
     public ExtentTestLogger(ExtentHtmlReporter reporter, ExtentReports extentReports, String testName, String testDescription) {
         extentReports.attachReporter(reporter);

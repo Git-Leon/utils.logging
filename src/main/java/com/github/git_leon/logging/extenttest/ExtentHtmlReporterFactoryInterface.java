@@ -6,19 +6,19 @@ import java.util.Map;
 
 public interface ExtentHtmlReporterFactoryInterface {
 
-    default ExtentHtmlReporter createExtentHtmlReporter(String name) {
-        if (!containsExtentHtmlReporter(name)) {
-            getReporterMap().put(name, new ExtentHtmlReporter(name));
+    default ExtentHtmlReporter createExtentHtmlReporter(String filePath) {
+        if (!containsExtentHtmlReporter(filePath)) {
+            getReporterMap().put(filePath, new ExtentHtmlReporter(filePath));
         }
-        return getReporterMap().get(name);
+        return getReporterMap().get(filePath);
     }
 
 
-    default ExtentHtmlReporter getExtentHtmlReporter(String name) {
+    default ExtentHtmlReporter getExtentHtmlReporter(String filePath) {
         return getReporterMap()
                 .entrySet()
                 .stream()
-                .filter(entrySet -> entrySet.getKey().equals(name))
+                .filter(entrySet -> entrySet.getKey().equals(filePath))
                 .map(Map.Entry::getValue)
                 .findFirst()
                 .get();

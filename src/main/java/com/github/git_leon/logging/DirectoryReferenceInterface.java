@@ -10,6 +10,10 @@ public interface DirectoryReferenceInterface {
     }
 
     default File getFileFromDirectory(String fileName) {
-        return new File(getDirectoryPath() + fileName);
+        File file = new File(getDirectoryFile()
+                .getAbsolutePath()
+                .concat(fileName));
+        file.getParentFile().mkdirs();
+        return file;
     }
 }
