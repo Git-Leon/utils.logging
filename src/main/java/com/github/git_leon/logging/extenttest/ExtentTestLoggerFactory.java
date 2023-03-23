@@ -9,14 +9,8 @@ public class ExtentTestLoggerFactory {
 
     private ExtentReports reports;
 
-    public ExtentTestLoggerFactory(DirectoryReferenceInterface directoryReference, String fileName) {
-        this(directoryReference
-                .getFileFromDirectory("/" + fileName)
-                .getAbsolutePath());
-    }
-
-    public ExtentTestLoggerFactory(String path) {
-        this(new ExtentHtmlReporter(path), new ExtentReports());
+    public ExtentTestLoggerFactory(String reportFullPath) {
+        this(new ExtentHtmlReporter(reportFullPath), new ExtentReports());
 
     }
 
@@ -26,15 +20,14 @@ public class ExtentTestLoggerFactory {
         reports.attachReporter(reporter);
     }
 
-    public ExtentTestLogger createExtentTestLogger(String loggerName, String loggerDescription) {
-        loggerName = loggerName + "." + System.currentTimeMillis();
+    public ExtentTestLoggerInterface createExtentTestLogger(String loggerName, String loggerDescription) {
         if ("".equals(loggerDescription) || loggerDescription == null) {
             return new ExtentTestLogger(reporter, reports, this.reports.createTest(loggerName));
         }
         return new ExtentTestLogger(reporter, reports, this.reports.createTest(loggerName, loggerDescription));
     }
 
-    public ExtentTestLogger createExtentTestLogger(String loggerName) {
+    public ExtentTestLoggerInterface createExtentTestLogger(String loggerName) {
         return createExtentTestLogger(loggerName, null);
     }
 
