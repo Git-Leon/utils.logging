@@ -1,4 +1,4 @@
-package com.github.git_leon.logging;
+package com.github.git_leon.logging.functionexecutiontimer;
 
 import java.util.concurrent.TimeUnit;
 

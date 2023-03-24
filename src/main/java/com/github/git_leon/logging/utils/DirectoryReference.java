@@ -1,6 +1,4 @@
-package com.github.git_leon.logging;
-
-import java.io.File;
+package com.github.git_leon.logging.utils;
 
 /**
  * @author leonhunter

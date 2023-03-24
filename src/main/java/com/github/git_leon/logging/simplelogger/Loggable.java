@@ -1,4 +1,4 @@
-package com.github.git_leon.logging;
+package com.github.git_leon.logging.simplelogger;
 
 import com.github.git_leon.logging.simplelogger.SimpleLoggerInterface;
 import com.github.git_leon.logging.simplelogger.SimpleLoggerWarehouse;

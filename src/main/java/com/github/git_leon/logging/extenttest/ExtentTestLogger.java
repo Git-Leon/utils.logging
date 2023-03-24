@@ -3,7 +3,7 @@ package com.github.git_leon.logging.extenttest;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
-import com.github.git_leon.logging.DirectoryReference;
+import com.github.git_leon.logging.utils.DirectoryReference;
 
 public class ExtentTestLogger implements ExtentTestLoggerInterface {
     private final ExtentTest extentTest;

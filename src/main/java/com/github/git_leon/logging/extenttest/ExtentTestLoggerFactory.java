@@ -2,7 +2,6 @@ package com.github.git_leon.logging.extenttest;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
-import com.github.git_leon.logging.DirectoryReferenceInterface;
 
 public class ExtentTestLoggerFactory {
     private ExtentHtmlReporter reporter;
