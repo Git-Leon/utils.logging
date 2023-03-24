@@ -41,7 +41,6 @@ public class ExtentTestLoggerTest {
     @Test
     public void testIfFunctionIsInvokedWithLogMessageAndReturningValue1() {
         // Given
-        this.logger = extentTestLoggerFactory.createExtentTestLogger(new TestName().getMethodName());
         String logMessage = "log message";
         String stringVal = "F";
         Integer radix = 16;
