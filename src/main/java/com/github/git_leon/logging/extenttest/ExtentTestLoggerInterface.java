@@ -21,11 +21,15 @@ public interface ExtentTestLoggerInterface extends SimpleLoggerInterface {
         getExtentReporter().flush();
     }
 
+    default void log(Status status, String logMessage, Object... logMessageArgs) {
+        if (isEnabled()) {
+            getExtentTest().log(status, String.format(logMessage, logMessageArgs));
+        }
+    }
+
     @Override
     default void log(Level level, String logMessage, Object... logMessageArgs) {
-        if (isEnabled()) {
-            getExtentTest().log(getStatus(level), String.format(logMessage, logMessageArgs));
-        }
+        log(ExtentTestStatus.getStatus(level), String.format(logMessage, logMessageArgs));
     }
 
     @Override
@@ -41,23 +45,6 @@ public interface ExtentTestLoggerInterface extends SimpleLoggerInterface {
                 .toString()
                 .replaceAll("\n", "<br>");
         this.error(description);
-    }
-
-    default Status getStatus(Level level) {
-        switch (level.getName().toUpperCase()) {
-            case "INFO":
-                return Status.PASS;
-            case "WARNING":
-                return Status.WARNING;
-            case "FINE":
-                return Status.INFO;
-            case "FINER":
-                return Status.ERROR;
-            case "FINEST":
-            case "SEVERE":
-                return Status.FAIL;
-        }
-        return Status.PASS;
     }
 
 

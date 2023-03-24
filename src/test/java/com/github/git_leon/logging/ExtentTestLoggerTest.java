@@ -1,6 +1,7 @@
 package com.github.git_leon.logging;
 
 
+import com.github.git_leon.logging.extenttest.ExtentAssert;
 import com.github.git_leon.logging.extenttest.ExtentTestLoggerFactory;
 import com.github.git_leon.logging.extenttest.ExtentTestLoggerInterface;
 import com.github.git_leon.logging.functionexecutiontimer.FunctionExecutionLoggerAndTimer;
@@ -12,11 +13,11 @@ import org.junit.rules.TestName;
  * @author leon on 5/26/18.
  */
 public class ExtentTestLoggerTest {
+    private static ExtentTestLoggerFactory extentTestLoggerFactory;
     @Rule
     public TestName name = new TestName();
-
     private ExtentTestLoggerInterface logger;
-    private static ExtentTestLoggerFactory extentTestLoggerFactory;
+    private ExtentAssert assertion;
 
 
     @BeforeClass
@@ -31,6 +32,7 @@ public class ExtentTestLoggerTest {
     @Before
     public void instanceSetup() {
         this.logger = extentTestLoggerFactory.createExtentTestLogger(name.getMethodName());
+        this.assertion = new ExtentAssert(logger);
     }
 
     @After
@@ -50,7 +52,9 @@ public class ExtentTestLoggerTest {
         Integer actual = new FunctionExecutionLoggerAndTimer(logger).logAndInvoke(Integer::parseInt, stringVal, radix, logMessage);
 
         // Then
-        Assert.assertEquals(expected, actual);
+        assertion.assertNotNull(actual);
+        assertion.assertNotEqual(5, actual);
+        assertion.assertEquals(expected, actual);
     }
 
     @Test
@@ -65,7 +69,7 @@ public class ExtentTestLoggerTest {
         Integer actual = new FunctionExecutionLoggerAndTimer(logger).logAndInvoke(Integer::parseInt, stringVal, radix, logMessage);
 
         // Then
-        Assert.assertEquals(expected, actual);
+        assertion.assertEquals(expected, actual);
     }
 
 
@@ -83,7 +87,7 @@ public class ExtentTestLoggerTest {
                 stringToConcatenateTo, integerToConcatenate, logMessage);
 
         // Then
-        Assert.assertEquals(expected, actual);
+        assertion.assertEquals(expected, actual);
     }
 
 
@@ -101,7 +105,7 @@ public class ExtentTestLoggerTest {
                 stringToConcatenateTo, integerToConcatenate, logMessage);
 
         // Then
-        Assert.assertEquals(expected, actual);
+        assertion.assertEquals(expected, actual);
     }
 
 }

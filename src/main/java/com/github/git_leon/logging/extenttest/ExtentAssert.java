@@ -1,19 +1,21 @@
 package com.github.git_leon.logging.extenttest;
 
+import com.aventstack.extentreports.Status;
 import org.junit.Assert;
 import org.junit.ComparisonFailure;
 
+import java.util.Arrays;
 import java.util.function.BiConsumer;
 import java.util.logging.Level;
 
 public class ExtentAssert {
-    private final ExtentTestLogger logger;
+    private final ExtentTestLoggerInterface logger;
 
-    public ExtentAssert(ExtentTestLogger logger) {
+    public ExtentAssert(ExtentTestLoggerInterface logger) {
         this.logger = logger;
     }
 
-    public ExtentTestLogger getLogger() {
+    public ExtentTestLoggerInterface getLogger() {
         return logger;
     }
 
@@ -25,6 +27,7 @@ public class ExtentAssert {
             assertion.accept(expected, actual);
         } catch (ComparisonFailure failure) {
             logger.log(Level.SEVERE, failure.getMessage());
+            throw failure;
         }
     }
 
@@ -33,6 +36,7 @@ public class ExtentAssert {
             Assert.assertArrayEquals(expected, actual);
         } catch (ComparisonFailure failure) {
             logger.log(Level.SEVERE, failure.getMessage());
+            throw failure;
         }
     }
 
@@ -43,14 +47,39 @@ public class ExtentAssert {
         final boolean isArray = expectedClass.isArray();
         final boolean shouldBeComparedAsArrays = areSameClass && isArray;
         try {
+            final ExtentTestLogger logger = ((ExtentTestLogger) this.logger);
+            final String attemptMessage = "Attempting to compare [ %s ] to [ %s ]";
+            final String successMessage = "The two objects being compared were identical.";
+            logger.log(Level.INFO, String.format(attemptMessage, expected, actual));
             if (shouldBeComparedAsArrays) {
                 Assert.assertArrayEquals((Object[]) expected, (Object[]) actual);
             } else {
                 Assert.assertEquals(expected, actual);
+                logger.log(Status.PASS, successMessage);
             }
         } catch (ComparisonFailure failure) {
             logger.log(Level.SEVERE, failure.getMessage());
+            throw failure;
         }
+    }
+
+
+    public void assertNotEqual(Object expected, Object actual) {
+        final ExtentTestLogger logger = ((ExtentTestLogger) this.logger);
+        final String attemptMessage = "Attempting to compare [ %s ] to [ %s ]";
+        final String successMessage = "The two objects being compared were not identical.";
+        logger.log(Level.INFO, String.format(attemptMessage, expected, actual));
+        try {
+            Assert.assertNotEquals(expected, actual);
+            logger.log(Status.PASS, successMessage);
+        } catch (ComparisonFailure failure) {
+            logger.log(Level.SEVERE, failure.getMessage());
+            throw failure;
+        }
+    }
+
+    public void assertNotNull(Object expected) {
+        assertNotEqual(expected, null);
     }
 
     public void assertTrue(Boolean value) {
@@ -61,68 +90,124 @@ public class ExtentAssert {
         assertEquals(false, value);
     }
 
-    public <SomeType> void assertArrayEquals(int[] expected, int[] actual) {
+    public void assertArrayEquals(int[] expected, int[] actual) {
         try {
+            final ExtentTestLogger logger = ((ExtentTestLogger) this.logger);
+            final String expectedString = Arrays.toString(expected);
+            final String actualString = Arrays.toString(actual);
+            final String attemptMessage = "Attempting to compare [ %s ] to [ %s ]";
+            final String successMessage = "The two objects being compared were identical.";
+            logger.log(Level.INFO, String.format(attemptMessage, expectedString, actualString));
             Assert.assertArrayEquals(expected, actual);
+            logger.log(Status.PASS, successMessage);
         } catch (ComparisonFailure failure) {
             logger.log(Level.SEVERE, failure.getMessage());
+            throw failure;
         }
     }
 
-    public <SomeType> void assertArrayEquals(char[] expected, char[] actual) {
+    public void assertArrayEquals(char[] expected, char[] actual) {
         try {
+            final ExtentTestLogger logger = ((ExtentTestLogger) this.logger);
+            final String expectedString = Arrays.toString(expected);
+            final String actualString = Arrays.toString(actual);
+            final String attemptMessage = "Attempting to compare [ %s ] to [ %s ]";
+            final String successMessage = "The two objects being compared were identical.";
+            logger.log(Level.INFO, String.format(attemptMessage, expectedString, actualString));
             Assert.assertArrayEquals(expected, actual);
+            logger.log(Status.PASS, successMessage);
         } catch (ComparisonFailure failure) {
             logger.log(Level.SEVERE, failure.getMessage());
+            throw failure;
         }
     }
 
-    public <SomeType> void assertArrayEquals(short[] expected, short[] actual) {
+    public void assertArrayEquals(short[] expected, short[] actual) {
         try {
+            final ExtentTestLogger logger = ((ExtentTestLogger) this.logger);
+            final String expectedString = Arrays.toString(expected);
+            final String actualString = Arrays.toString(actual);
+            final String attemptMessage = "Attempting to compare [ %s ] to [ %s ]";
+            final String successMessage = "The two objects being compared were identical.";
+            logger.log(Level.INFO, String.format(attemptMessage, expectedString, actualString));
             Assert.assertArrayEquals(expected, actual);
+            logger.log(Status.PASS, successMessage);
         } catch (ComparisonFailure failure) {
             logger.log(Level.SEVERE, failure.getMessage());
+            throw failure;
         }
     }
 
 
-    public <SomeType> void assertArrayEquals(byte[] expected, byte[] actual) {
+    public void assertArrayEquals(byte[] expected, byte[] actual) {
         try {
+            final ExtentTestLogger logger = ((ExtentTestLogger) this.logger);
+            final String expectedString = Arrays.toString(expected);
+            final String actualString = Arrays.toString(actual);
+            final String attemptMessage = "Attempting to compare [ %s ] to [ %s ]";
+            final String successMessage = "The two objects being compared were identical.";
+            logger.log(Level.INFO, String.format(attemptMessage, expectedString, actualString));
             Assert.assertArrayEquals(expected, actual);
+            logger.log(Status.PASS, successMessage);
         } catch (ComparisonFailure failure) {
             logger.log(Level.SEVERE, failure.getMessage());
+            throw failure;
         }
     }
 
-    public <SomeType> void assertArrayEquals(long[] expected, long[] actual) {
+    public void assertArrayEquals(long[] expected, long[] actual) {
         try {
+            final ExtentTestLogger logger = ((ExtentTestLogger) this.logger);
+            final String expectedString = Arrays.toString(expected);
+            final String actualString = Arrays.toString(actual);
+            final String attemptMessage = "Attempting to compare [ %s ] to [ %s ]";
+            final String successMessage = "The two objects being compared were identical.";
+            logger.log(Level.INFO, String.format(attemptMessage, expectedString, actualString));
             Assert.assertArrayEquals(expected, actual);
+            logger.log(Status.PASS, successMessage);
         } catch (ComparisonFailure failure) {
             logger.log(Level.SEVERE, failure.getMessage());
+            throw failure;
         }
     }
 
-    public <SomeType> void assertArrayEquals(double[] expected, double[] actual, double delta) {
+    public void assertArrayEquals(double[] expected, double[] actual, double delta) {
         try {
+            final ExtentTestLogger logger = ((ExtentTestLogger) this.logger);
+            final String expectedString = Arrays.toString(expected);
+            final String actualString = Arrays.toString(actual);
+            final String attemptMessage = "Attempting to compare [ %s ] to [ %s ] with an acceptable difference of [ %s ]";
+            final String successMessage = "The two objects being compared were identical.";
+            logger.log(Level.INFO, String.format(attemptMessage, expectedString, actualString));
             Assert.assertArrayEquals(expected, actual, delta);
+            logger.log(Status.PASS, successMessage);
         } catch (ComparisonFailure failure) {
             logger.log(Level.SEVERE, failure.getMessage());
+            throw failure;
         }
     }
 
-    public <SomeType> void assertArrayEquals(float[] expected, float[] actual, float delta) {
+    public void assertArrayEquals(float[] expected, float[] actual, float delta) {
         try {
+            final ExtentTestLogger logger = ((ExtentTestLogger) this.logger);
+            final String expectedString = Arrays.toString(expected);
+            final String actualString = Arrays.toString(actual);
+            final String attemptMessage = "Attempting to compare [ %s ] to [ %s ] with an acceptable difference of [ %s ]";
+            final String successMessage = "The two objects being compared were identical.";
+            logger.log(Level.INFO, String.format(attemptMessage, expectedString, actualString));
             Assert.assertArrayEquals(expected, actual, delta);
+            logger.log(Status.PASS, successMessage);
         } catch (ComparisonFailure failure) {
             logger.log(Level.SEVERE, failure.getMessage());
+            throw failure;
         }
     }
 
-    public <SomeType> void assertArrayEquals(double[] expected, double[] actual) {
+    public void assertArrayEquals(double[] expected, double[] actual) {
         assertArrayEquals(expected, actual, 0.001);
     }
 
-    public <SomeType> void assertArrayEquals(float[] expected, float[] actual) {
+    public void assertArrayEquals(float[] expected, float[] actual) {
         assertArrayEquals(expected, actual, 0.001F);
     }
 }

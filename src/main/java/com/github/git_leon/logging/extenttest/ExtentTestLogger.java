@@ -2,8 +2,11 @@ package com.github.git_leon.logging.extenttest;
 
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 import com.github.git_leon.logging.utils.DirectoryReference;
+
+import java.util.logging.Level;
 
 public class ExtentTestLogger implements ExtentTestLoggerInterface {
     private final ExtentTest extentTest;
@@ -39,6 +42,12 @@ public class ExtentTestLogger implements ExtentTestLoggerInterface {
         this.extentReporter = reporter;
         this.extentReports = extentReports;
         this.extentTest = extentReports.createTest(testName, testDescription);
+    }
+
+    public void log(Status status, String logMessage, Object... logMessageArgs) {
+        if (isEnabled()) {
+            getExtentTest().log(status, String.format(logMessage, logMessageArgs));
+        }
     }
 
     @Override
